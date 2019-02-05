@@ -12,7 +12,7 @@ import { AuthService } from './core/global/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public pageTitle = 'Dashboard';
+  public pageTitle = '';
   public displayName = 'User';
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -66,8 +66,10 @@ export class AppComponent implements OnInit {
 
   logout() {
     if (confirm('Are you sure?')) {
-      this.auth.logout().subscribe();
-      this.router.navigate(['login']);
+      this.auth.logout().subscribe(_ => {
+        this.auth.clearToken();
+        this.router.navigate(['login']);
+      });
     }
   }
 }
