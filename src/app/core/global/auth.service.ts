@@ -16,7 +16,7 @@ import { tap } from 'rxjs/operators';
 export class AuthService extends BaseProvider {
 
   static LOGIN_URI = 'authenticate';
-  static LOGOUT_URI = 'logout';
+  static LOGOUT_URI = 'user/logout';
 
   constructor(
     private _storage: LocalStorageService,
@@ -27,10 +27,11 @@ export class AuthService extends BaseProvider {
   }
 
   public logout() {
-    return this.http.post(this.getFullUrl(AuthService.LOGOUT_URI), {})
-    .pipe(
-      tap(_ => this._storage.clearAll())
-    );
+    return this.http.post(this.getFullUrl(AuthService.LOGOUT_URI), {});
+  }
+  
+  public clearToken() {
+    this._storage.clearAll();
   }
 
   /**
@@ -83,7 +84,6 @@ export class AuthService extends BaseProvider {
 
     loginOp.subscribe(
       (resp: any) => {
-        console.log(resp);
         if (!resp.error && null !== resp.result.token) {
           return loginSubject.next(this.writeToken(resp.result.token));
         }
