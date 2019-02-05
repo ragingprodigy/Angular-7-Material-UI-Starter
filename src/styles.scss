@@ -1,0 +1,265 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-main: (50 : #e3f3e7,
+100 : #b9e2c4,
+200 : #8ace9d,
+300 : #5bba76,
+400 : #38ac58,
+500 : #159d3b,
+600 : #129535,
+700 : #0f8b2d,
+800 : #0c8126,
+900 : #066f19,
+A100 : #9fffab,
+A200 : #6cff7e,
+A400 : #39ff52,
+A700 : #20ff3b,
+contrast: (50 : #000000,
+100 : #000000,
+200 : #000000,
+300 : #000000,
+400 : #ffffff,
+500 : #ffffff,
+600 : #ffffff,
+700 : #ffffff,
+800 : #ffffff,
+900 : #ffffff,
+A100 : #000000,
+A200 : #000000,
+A400 : #000000,
+A700 : #000000,
+));
+
+$md-accent: (50 : #e3f3e7,
+100 : #b9e2c4,
+200 : #8ace9d,
+300 : #5bba76,
+400 : #38ac58,
+500 : #159d3b,
+600 : #129535,
+700 : #0f8b2d,
+800 : #0c8126,
+900 : #066f19,
+A100 : #9fffab,
+A200 : #6cff7e,
+A400 : #39ff52,
+A700 : #20ff3b,
+contrast: (50 : #000000,
+100 : #000000,
+200 : #000000,
+300 : #000000,
+400 : #ffffff,
+500 : #ffffff,
+600 : #ffffff,
+700 : #ffffff,
+800 : #ffffff,
+900 : #ffffff,
+A100 : #000000,
+A200 : #000000,
+A400 : #000000,
+A700 : #000000,
+));
+
+
+:root {
+  --main-bg-color: #159D3B;
+  --accent-color: #ffffff;
+}
+
+$app-primary: mat-palette($md-main);
+$app-accent: mat-palette($md-accent);
+
+$app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+@include angular-material-theme($app-theme);
+
+@media screen {
+  .print-only,
+  .print-only * {
+    display: none !important;
+  }
+}
+
+@media print {
+
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  height: 100%;
+
+  .title-card {
+    max-width: 360px;
+  }
+
+  .flex-h-fill {
+    flex: 1 1 auto;
+  }
+
+  .text-accent {
+    color: mat-color($app-accent);
+  }
+
+  .text-primary {
+    color: mat-color($app-primary);
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+    }
+  }
+
+  .text-centered {
+    text-align: center !important;
+  }
+
+  .text-right {
+    text-align: right !important;
+  }
+
+  .text-muted {
+    color: #CCCCCC;
+  }
+
+  .px-0 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .py-0 {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .mat-tab-label-active {
+    color: var(--accent-color);
+  }
+
+  .mat-chip-list-wrapper {
+    margin-top: .05em;
+    margin-bottom: 0.05em;
+  }
+
+  @for $i from 1 through 10000 {
+    .w-#{$i} {
+      width: #{$i * .5}px;
+    }
+
+    .mw-#{$i} {
+      max-width: #{$i * .5}px;
+    }
+  }
+
+  @for $i from 1 through 6 {
+    .m-#{$i} {
+      margin: #{$i * .5}em #{$i * .5}em #{$i * .5}em #{$i * .5}em;
+    }
+
+    .ml-#{$i} {
+      margin-left: #{$i * .5}em;
+    }
+
+    .mr-#{$i} {
+      margin-right: #{$i * .5}em;
+    }
+
+    .mt-#{$i} {
+      margin-top: #{$i * .5}em;
+    }
+
+    .mb-#{$i} {
+      margin-bottom: #{$i * .5}em;
+    }
+
+    .mx-#{$i} {
+      margin-left: #{$i * .5}em;
+      margin-right: #{$i * .5}em;
+    }
+
+    .my-#{$i} {
+      margin-top: #{$i * .5}em;
+      margin-bottom: #{$i * .5}em;
+    }
+
+    .p-#{$i} {
+      padding: #{$i * .5}em #{$i * .5}em #{$i * .5}em #{$i * .5}em;
+    }
+
+    .pl-#{$i} {
+      padding-left: #{$i * .5}em;
+    }
+
+    .pr-#{$i} {
+      padding-right: #{$i * .5}em;
+    }
+
+    .pt-#{$i} {
+      padding-top: #{$i * .5}em;
+    }
+
+    .pb-#{$i} {
+      padding-bottom: #{$i * .5}em;
+    }
+
+    .px-#{$i} {
+      padding-left: #{$i * .5}em;
+      padding-right: #{$i * .5}em;
+    }
+
+    .py-#{$i} {
+      padding-top: #{$i * .5}em;
+      padding-bottom: #{$i * .5}em;
+    }
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.table-success,
+.table-success>td,
+.table-success>th {
+  background-color: #c3e6cb;
+}
+
+.table-warning,
+.table-warning>td,
+.table-warning>th {
+  background-color: #ffeeba61;
+}
+
+.table-danger,
+.table-danger>td,
+.table-danger>th {
+  background-color: #f5c6cb52;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 !important;
+}

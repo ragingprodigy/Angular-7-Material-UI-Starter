@@ -1,0 +1,25 @@
+.login-page {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: var(--main-accent-color);
+
+  .login-page__logo {
+    display: block;
+    margin: 0 auto 40px;
+    width: 10%;
+  }
+
+  .login-page__container {
+    max-width: 512px;
+    margin: 0 auto;
+  }
+
+  form {
+    box-sizing: border-box;
+    margin: auto;
+    padding: 20px;
+    color: #fff;
+  }
+}

@@ -1,0 +1,47 @@
+<div id="app">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav no-print" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'over'">
+      <mat-toolbar color="accent" class="z-2">
+        <img src="assets/logo.png" class="px-1 my-4 logo" />
+      </mat-toolbar>
+      <mat-nav-list class="py-0" *ngIf="isAuthenticated">
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="active" (click)="drawer.toggle()">
+          <i class="material-icons">
+            dashboard
+          </i>
+          Dashboard
+        </a>
+        <a mat-list-item [routerLink]="['/admin']" routerLinkActive="active" *ngIf="isAdmin" (click)="drawer.toggle()">
+          <i class="material-icons">
+            security
+          </i>
+          System Settings
+        </a>
+        <a mat-list-item (click)="drawer.toggle() && logout()">
+          <i class="material-icons">
+            power_off
+          </i>
+          Log Out
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" class="mat-elevation-z6 main-toolbar no-print" *ngIf="isAuthenticated">
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <img src="assets/logo.png" class="px-1 my-4 logo" />
+        <span class="app-name" color="accent" *ngIf="isAuthenticated">Welcome, {{displayName}}</span>
+        <span class="flex-h-fill"></span>
+        <span class="mr-1">-</span>
+      </mat-toolbar>
+      <mat-toolbar *ngIf="isAuthenticated" color="primary" class="secondary-toolbar no-print">
+        <h2 class="ml-1">{{pageTitle}}</h2>
+      </mat-toolbar>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

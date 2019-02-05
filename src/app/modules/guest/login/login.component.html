@@ -1,0 +1,29 @@
+<mat-progress-bar mode="query" color="accent" *ngIf="showLoader"></mat-progress-bar>
+<div class="login-page">
+  <form class="login-page__form" [formGroup]="loginForm" (submit)="onSubmit()">
+    <img src="assets/logo.png" class="login-page__logo">
+    <div class="login-page__container">
+      <mat-card>
+        <mat-form-field>
+          <input matInput placeholder="Username" formControlName="username">
+          <mat-error *ngIf="loginForm.controls['username'].hasError('username') && !loginForm.controls['username'].hasError('required')">
+            Please enter a valid username
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+            Username is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="ml-4">
+          <input matInput placeholder="Password" type="password" formControlName="password">
+          <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="ml-2" [disabled]="!loginForm.valid">
+          LOGIN
+        </button>
+      </mat-card>
+    </div>
+  </form>
+</div>
